@@ -19,29 +19,6 @@ public class server {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		/*try {
-			ServerSocket ss = new ServerSocket(8080 , 2);
-			System.out.println("server created");
-			
-			Socket s = ss.accept(); // block until he get something
-			System.out.println("Connected");
-			
-			InputStream is = s.getInputStream();
-			OutputStream os = s.getOutputStream();
-			
-			while(true) {
-				// Receive a message
-				byte[] b = new byte[200];
-				is.read(b);
-				System.out.println("from client : " + new String(b));
-				// send message
-				os.write(b);
-			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
-		
 		try {
 			ServerSocket ss = new ServerSocket(8080 , 2);
 			System.out.println("server created");
