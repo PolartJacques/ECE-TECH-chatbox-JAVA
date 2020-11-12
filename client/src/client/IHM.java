@@ -22,17 +22,25 @@ public class IHM implements Runnable {
 
 	private JFrame frame;
 	private JTextArea textArea;
+	private JLabel lblUsername;
 	
 	private Socket s;
 	private SocketAddress me;
 	
 	private Thread thread;
+	
+	private String username;
 
 	// CONSTRUCTOR
 	public IHM(JTextArea textArea, Socket s) {
 		super();
 		this.textArea = textArea;
 		this.s = s;
+	}
+	
+	public IHM(String username) {
+		super();
+		this.username = username;
 	}
 
 	/**
@@ -43,7 +51,7 @@ public class IHM implements Runnable {
 			public void run() {
 				try {
 					IHM window = new IHM();
-					window.frame.setVisible(true);
+					window.getFrame().setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -63,13 +71,13 @@ public class IHM implements Runnable {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 600, 500);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		getFrame().setBounds(100, 100, 600, 500);
+		getFrame().setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		getFrame().getContentPane().setLayout(null);
 		
 		textArea = new JTextArea();
 		textArea.setBounds(12, 49, 300, 250);
-		frame.getContentPane().add(textArea);
+		getFrame().getContentPane().add(textArea);
 		
 		JButton btnJoindre = new JButton("Joindre");
 		btnJoindre.addActionListener(new ActionListener() {
@@ -89,11 +97,11 @@ public class IHM implements Runnable {
 			}
 		});
 		btnJoindre.setBounds(12, 12, 117, 25);
-		frame.getContentPane().add(btnJoindre);
+		getFrame().getContentPane().add(btnJoindre);
 		
 		JTextField textField = new JTextField();
 		textField.setBounds(12, 311, 300, 19);
-		frame.getContentPane().add(textField);
+		getFrame().getContentPane().add(textField);
 		textField.setColumns(10);
 		
 		JButton btnEnvoyer = new JButton("Envoyer");
@@ -113,15 +121,19 @@ public class IHM implements Runnable {
 			}
 		});
 		btnEnvoyer.setBounds(12, 342, 117, 25);
-		frame.getContentPane().add(btnEnvoyer);
+		getFrame().getContentPane().add(btnEnvoyer);
 		
 		JLabel lblEtat = new JLabel("Etat :");
 		lblEtat.setBounds(12, 443, 70, 15);
-		frame.getContentPane().add(lblEtat);
+		getFrame().getContentPane().add(lblEtat);
 		
 		JLabel lblNewLabel = new JLabel("New label");
 		lblNewLabel.setBounds(12, 416, 70, 15);
-		frame.getContentPane().add(lblNewLabel);
+		getFrame().getContentPane().add(lblNewLabel);
+		
+		lblUsername = new JLabel(username);
+		lblUsername.setBounds(209, 17, 70, 15);
+		frame.getContentPane().add(lblUsername);
 	}
 
 	@Override
@@ -142,4 +154,18 @@ public class IHM implements Runnable {
 			e.printStackTrace();
 		}
 	}
+
+	// GETTERS AND SETTERS
+	public JFrame getFrame() {
+		return frame;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	
+	public JLabel getlblUsername() {
+		return lblUsername;
+	}
+	
 }
