@@ -51,7 +51,9 @@ public class IHM implements Runnable {
 			public void run() {
 				try {
 					IHM window = new IHM();
-					window.getFrame().setVisible(true);
+					loginPage login = new loginPage(window.frame, true);
+					login.setVisible(true);
+					// window.getFrame().setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
