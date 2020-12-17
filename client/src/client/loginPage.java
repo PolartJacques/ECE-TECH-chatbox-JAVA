@@ -29,19 +29,13 @@ public class loginPage extends JDialog {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		try {
-			// loginPage dialog = new loginPage();
-			// dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			// dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		
 	}
 
 	/**
 	 * Create the dialog.
 	 */
-	public loginPage(Frame owner, boolean modal) {
+	public loginPage(IHM myIHM, boolean modal) {
 		loginPage myFrame = this;
 		myFrame.setModal(modal);
 		
@@ -103,8 +97,9 @@ public class loginPage extends JDialog {
 							if(rs.getInt(1) == 1) {
 								con.close();
 								myFrame.dispose();
-								owner.setTitle(username);
-								owner.setVisible(true);
+								myIHM.getFrame().setTitle(username);
+								myIHM.getFrame().setVisible(true);
+								myIHM.setUsername(username);
 							} else {
 								lblUserNotFound.setVisible(true);
 								textField.setText("");
